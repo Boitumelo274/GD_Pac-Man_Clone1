@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd0364ba65c0b74f86cd87624d904bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 4
+  speed: 2
 --- !u!212 &213786659
 SpriteRenderer:
   serializedVersion: 2
@@ -1109,8 +1109,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213786657}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.75, y: -0.49, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.009449989, y: 0.22850001, z: 0}
   m_LocalScale: {x: 0.5389, y: 0.5389, z: 0.5389}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2916,7 +2916,7 @@ Transform:
   m_GameObject: {fileID: 394312634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.98, y: 0.73, z: 0}
+  m_LocalPosition: {x: -2.89, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4989,7 +4989,7 @@ Transform:
   m_GameObject: {fileID: 578253627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.98, y: 1.648, z: 0}
+  m_LocalPosition: {x: -2.89, y: 1.648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5779,7 +5779,7 @@ Transform:
   m_GameObject: {fileID: 691470622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 3.29, z: 0}
+  m_LocalPosition: {x: -2.88, y: 3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6902,7 +6902,7 @@ Transform:
   m_GameObject: {fileID: 895837498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 5.375, z: 0}
+  m_LocalPosition: {x: -1.98, y: 5.375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8309,7 +8309,7 @@ Transform:
   m_GameObject: {fileID: 1046169956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 4.222, z: 0}
+  m_LocalPosition: {x: -1.98, y: 4.222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8358,7 +8358,7 @@ Transform:
   m_GameObject: {fileID: 1066273207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.06, y: -0.074, z: 0}
+  m_LocalPosition: {x: -1.975, y: -0.074, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8505,7 +8505,7 @@ Transform:
   m_GameObject: {fileID: 1104351252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.06, y: -1.04, z: 0}
+  m_LocalPosition: {x: -1.9749999, y: -1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9454,7 +9454,7 @@ Transform:
   m_GameObject: {fileID: 1214230408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.98, y: 2.4, z: 0}
+  m_LocalPosition: {x: -2.89, y: 2.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12362,6 +12362,12 @@ MonoBehaviour:
   boardParent: {fileID: 1683695414}
   player: {fileID: 213786657}
   nodeTag: MazeNode
+  minX: 0
+  minY: 0
+  maxX: 0
+  maxY: 0
+  boardWidth: 0
+  boardHeight: 0
 --- !u!4 &1678935661
 Transform:
   m_ObjectHideFlags: 0
@@ -14007,7 +14013,7 @@ Transform:
   m_GameObject: {fileID: 1837675224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 4.222, z: 0}
+  m_LocalPosition: {x: -2.88, y: 4.222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

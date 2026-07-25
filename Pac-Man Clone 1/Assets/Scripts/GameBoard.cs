@@ -6,9 +6,16 @@ public class GameBoard : MonoBehaviour
     public GameObject[,] board;
     public Transform boardParent;
 
-    // Add player reference
     public GameObject player;
     public string nodeTag = "MazeNode";
+
+    // Make these PUBLIC so PlayerController can access them
+    public int minX;
+    public int minY;
+    public int maxX;
+    public int maxY;
+    public int boardWidth;
+    public int boardHeight;
 
     void Start()
     {
@@ -18,7 +25,6 @@ public class GameBoard : MonoBehaviour
             return;
         }
 
-        // Get all children of the board parent
         List<GameObject> mazeNodes = new List<GameObject>();
 
         foreach (Transform child in boardParent)
@@ -31,15 +37,17 @@ public class GameBoard : MonoBehaviour
 
         if (mazeNodes.Count == 0)
         {
-            Debug.LogError($"No maze nodes found under {boardParent.name}! Make sure your nodes are children or tagged correctly.");
+            Debug.LogError($"No maze nodes found under {boardParent.name}!");
             return;
         }
 
         Debug.Log($"Found {mazeNodes.Count} maze nodes");
 
-        // Find min and max positions
-        int minX = int.MaxValue, maxX = int.MinValue;
-        int minY = int.MaxValue, maxY = int.MinValue;
+        // Find min and max positions using WORLD position
+        minX = int.MaxValue;
+        maxX = int.MinValue;
+        minY = int.MaxValue;
+        maxY = int.MinValue;
 
         foreach (GameObject node in mazeNodes)
         {
@@ -52,47 +60,29 @@ public class GameBoard : MonoBehaviour
             minY = Mathf.Min(minY, y);
             maxY = Mathf.Max(maxY, y);
 
-           
-            Debug.Log($"Node: {node.name} is located at : ({node.transform.localPosition.x}, {node.transform.localPosition.y})");
+            Debug.Log($"Node: {node.name} at world: ({x}, {y})");
         }
 
-        // Calculate board dimensions
-        int boardWidth = maxX - minX + 1;
-        int boardHeight = maxY - minY + 1;
+        boardWidth = maxX - minX + 1;
+        boardHeight = maxY - minY + 1;
 
         Debug.Log($"Board dimensions: {boardWidth} x {boardHeight}");
         Debug.Log($"X range: {minX} to {maxX}, Y range: {minY} to {maxY}");
 
-        // Initialize the array
         board = new GameObject[boardWidth, boardHeight];
 
-        // Place all nodes in the array
         foreach (GameObject node in mazeNodes)
         {
             Vector2 pos = node.transform.position;
             int x = Mathf.RoundToInt(pos.x);
             int y = Mathf.RoundToInt(pos.y);
 
-            // Convert world coordinates to array indices
             int arrayX = x - minX;
             int arrayY = y - minY;
 
             board[arrayX, arrayY] = node;
         }
 
-        if (player != null)
-        {
-      
-            Debug.Log($"Player is found at : ({player.transform.localPosition.x}, {player.transform.localPosition.y}, {player.transform.localPosition.z})");
-          
-        }
-        else
-        {
-            Debug.LogWarning("Player not assigned!");
-        }
-
-       
+        Debug.Log($"Board initialized! Size: {boardWidth}x{boardHeight}");
     }
-
-    
 }

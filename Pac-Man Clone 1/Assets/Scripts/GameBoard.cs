@@ -9,7 +9,6 @@ public class GameBoard : MonoBehaviour
     public GameObject player;
     public string nodeTag = "MazeNode";
 
-    // Make these PUBLIC so PlayerController can access them
     public int minX;
     public int minY;
     public int maxX;
@@ -43,7 +42,7 @@ public class GameBoard : MonoBehaviour
 
         Debug.Log($"Found {mazeNodes.Count} maze nodes");
 
-        // Find min and max positions using WORLD position
+   
         minX = int.MaxValue;
         maxX = int.MinValue;
         minY = int.MaxValue;

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 direction = Vector2.zero;
     private Vector2 nextDirection;
-    private Node currentNode,previousNode,targetNode;
+    private Node currentNode, previousNode, targetNode;
     private GameBoard gameBoard;
 
     void Start()
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Use WORLD position with proper rounding
+       
         Node node = GetNodeAtPosition(transform.position);
 
         if (node != null)
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-          ChangePosition(Vector2.right);
+            ChangePosition(Vector2.right);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-           ChangePosition(Vector2.down);
+            ChangePosition(Vector2.down);
         }
     }
 
@@ -93,12 +93,12 @@ public class PlayerController : MonoBehaviour
 
     void ChangePosition(Vector2 d)
     {
-        if(d != direction)
+        if (d != direction)
         {
             nextDirection = d;
         }
 
-        if(currentNode != null)
+        if (currentNode != null)
         {
             Node moveToNode = CanMove(d);
 
@@ -114,9 +114,9 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if(targetNode != currentNode && targetNode != null)
+        if (targetNode != currentNode && targetNode != null)
         {
-            if(nextDirection == direction * -1)
+            if (nextDirection == direction * -1)
             {
                 direction *= -1;
                 Node tempNode = targetNode;
@@ -128,6 +128,14 @@ public class PlayerController : MonoBehaviour
             {
                 currentNode = targetNode;
                 transform.localPosition = currentNode.transform.position;
+                GameObject otherPortal = GetPortal(currentNode.transform.position);
+
+                if (otherPortal != null)
+                {
+                    transform.localPosition = otherPortal.transform.position;
+                    currentNode = otherPortal.GetComponent<Node>();
+                }
+
                 Node moveToNode = CanMove(nextDirection);
 
                 if (moveToNode != null)
@@ -140,7 +148,7 @@ public class PlayerController : MonoBehaviour
                     moveToNode = CanMove(direction);
                 }
 
-                if(moveToNode != null)
+                if (moveToNode != null)
                 {
                     targetNode = moveToNode;
                     previousNode = currentNode;
@@ -154,7 +162,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 transform.localPosition += (Vector3)(direction * speed) * Time.deltaTime;
-
             }
         }
     }
@@ -206,19 +213,17 @@ public class PlayerController : MonoBehaviour
             return null;
         }
 
-        // Round the position using Mathf.RoundToInt (same as GameBoard)
         int x = Mathf.RoundToInt(pos.x);
         int y = Mathf.RoundToInt(pos.y);
 
-        // Convert world position to array index using the OFFSET
+        
         int arrayX = x - gameBoard.minX;
         int arrayY = y - gameBoard.minY;
 
-        // Get board dimensions
         int width = gameBoard.board.GetLength(0);
         int height = gameBoard.board.GetLength(1);
 
-        // Bounds check
+       
         if (arrayX < 0 || arrayX >= width || arrayY < 0 || arrayY >= height)
         {
             Debug.LogWarning($"Position ({x}, {y}) is outside board! Array index [{arrayX}, {arrayY}]");
@@ -242,9 +247,49 @@ public class PlayerController : MonoBehaviour
         return nodeToSelf > nodeToTarget;
     }
 
-    float LengthFromNode (Vector2 targetPosition)
+    float LengthFromNode(Vector2 targetPosition)
     {
         Vector2 vec = targetPosition - (Vector2)previousNode.transform.position;
         return vec.sqrMagnitude;
+    }
+
+    GameObject GetPortal(Vector2 pos)
+    {
+       
+        if (gameBoard == null || gameBoard.board == null)
+        {
+            return null;
+        }
+
+       
+        int x = Mathf.RoundToInt(pos.x);
+        int y = Mathf.RoundToInt(pos.y);
+
+       
+        int arrayX = x - gameBoard.minX;
+        int arrayY = y - gameBoard.minY;
+
+       
+        int width = gameBoard.board.GetLength(0);
+        int height = gameBoard.board.GetLength(1);
+
+       
+        if (arrayX < 0 || arrayX >= width || arrayY < 0 || arrayY >= height)
+        {
+            return null;
+        }
+
+        GameObject tile = gameBoard.board[arrayX, arrayY];
+
+        if (tile != null)
+        {
+            Tile tileComponent = tile.GetComponent<Tile>();
+            if (tileComponent != null && tileComponent.isPortal)
+            {
+                return tileComponent.portalReciever;
+            }
+        }
+
+        return null;
     }
 }

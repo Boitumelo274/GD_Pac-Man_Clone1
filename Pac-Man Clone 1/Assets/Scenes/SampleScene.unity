@@ -2191,6 +2191,7 @@ MonoBehaviour:
   - {fileID: 1019236968}
   - {fileID: 1471537476}
   - {fileID: 172581667}
+  - {fileID: 561148179}
   validDirections: []
 --- !u!1 &337454639
 GameObject:
@@ -4915,6 +4916,68 @@ MonoBehaviour:
   - {fileID: 738669654}
   - {fileID: 743667086}
   validDirections: []
+--- !u!1 &561148177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561148178}
+  - component: {fileID: 561148179}
+  - component: {fileID: 561148180}
+  m_Layer: 0
+  m_Name: Node1 (96)
+  m_TagString: MazeNode
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &561148178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561148177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.74, y: 1.65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1683695414}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561148179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561148177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ab55e6b1236954aaee3749be542e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Node
+  neighbors:
+  - {fileID: 337298265}
+  validDirections: []
+--- !u!114 &561148180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561148177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b02afece5d4d3147a28086cddf5a93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tile
+  isPortal: 1
+  portalReciever: {fileID: 1617671863}
 --- !u!1 &561544465
 GameObject:
   m_ObjectHideFlags: 0
@@ -9622,6 +9685,7 @@ MonoBehaviour:
   neighbors:
   - {fileID: 1815185947}
   - {fileID: 1278189915}
+  - {fileID: 10883888}
   validDirections: []
 --- !u!1 &1311989005
 GameObject:
@@ -10978,6 +11042,7 @@ MonoBehaviour:
   - {fileID: 1776493014}
   - {fileID: 578253629}
   - {fileID: 1033344466}
+  - {fileID: 1617671865}
   validDirections: []
 --- !u!1 &1444983835
 GameObject:
@@ -12005,6 +12070,68 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1617671863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1617671864}
+  - component: {fileID: 1617671865}
+  - component: {fileID: 1617671866}
+  m_Layer: 0
+  m_Name: Node1 (95)
+  m_TagString: MazeNode
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1617671864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617671863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.94, y: 1.648, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1683695414}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1617671865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617671863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ab55e6b1236954aaee3749be542e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Node
+  neighbors:
+  - {fileID: 1438973629}
+  validDirections: []
+--- !u!114 &1617671866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617671863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b02afece5d4d3147a28086cddf5a93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tile
+  isPortal: 1
+  portalReciever: {fileID: 561148177}
 --- !u!1 &1626170345
 GameObject:
   m_ObjectHideFlags: 0
@@ -12424,6 +12551,8 @@ Transform:
   - {fileID: 228021734}
   - {fileID: 1776493013}
   - {fileID: 1438973628}
+  - {fileID: 1617671864}
+  - {fileID: 561148178}
   - {fileID: 578253628}
   - {fileID: 394312635}
   - {fileID: 1069164384}

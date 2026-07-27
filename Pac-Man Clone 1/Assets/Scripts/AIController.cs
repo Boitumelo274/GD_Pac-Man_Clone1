@@ -33,7 +33,7 @@ public class AIController : MonoBehaviour
     private GameBoard gameBoard;
     private Transform playerTransform;
 
-    // Movement variables (EXACT COPY of PlayerController)
+    // Movement variables
     private Vector2 direction = Vector2.zero;
     private Vector2 nextDirection;
     private Node currentNode, previousNode, targetNode;
@@ -178,14 +178,6 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
-        // FIX: currentNode is legitimately null while the AI is travelling
-        // between two nodes (SetNextTargetFromPath/PatrolAroundFruit/chase
-        // logic all set it to null on purpose). The old check here treated
-        // that as "lost" and called FindClosestNode() every such frame,
-        // which snaps transform.position onto the nearest node and skips
-        // Move() for that frame — that's what was causing the
-        // stutter/teleport glitch. We only want the recovery snap when the
-        // AI has no node references at all (e.g. truly uninitialized).
         if (currentNode == null && previousNode == null && targetNode == null)
         {
             FindClosestNode();
@@ -212,7 +204,6 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        // MOVE (EXACT SAME AS PLAYER)
         Move();
         UpdateRotation();
     }
@@ -287,10 +278,6 @@ public class AIController : MonoBehaviour
                 currentNode = null;
                 direction = (targetNode.transform.position - previousNode.transform.position).normalized;
 
-                // FIX: clear any leftover path from a previous chase target.
-                // Without this, Move()'s overshoot handler could pick back up
-                // a stale currentPath/pathIndex from an earlier calculation
-                // and steer the AI toward an outdated destination.
                 currentPath.Clear();
                 pathIndex = 0;
             }
@@ -429,7 +416,6 @@ public class AIController : MonoBehaviour
         targetNode = null;
     }
 
-    // ========== EXACT SAME MOVE METHOD AS PLAYER ==========
     void Move()
     {
         if (targetNode != currentNode && targetNode != null)
@@ -530,7 +516,6 @@ public class AIController : MonoBehaviour
         }
     }
 
-    // ========== EXACT SAME HELPER METHODS AS PLAYER ==========
 
     Node CanMove(Vector2 d)
     {
@@ -648,7 +633,7 @@ public class AIController : MonoBehaviour
         return null;
     }
 
-    // ========== PROPER BFS PATHFINDING ==========
+  
 
     List<Node> FindPath(Node start, Node target)
     {
@@ -663,7 +648,7 @@ public class AIController : MonoBehaviour
             return path;
         }
 
-        // BFS Pathfinding - ONLY uses valid node connections
+        
         Queue<Node> queue = new Queue<Node>();
         Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
         HashSet<Node> visited = new HashSet<Node>();
@@ -710,7 +695,7 @@ public class AIController : MonoBehaviour
             }
         }
 
-        // No path found
+       
         return path;
     }
 
@@ -741,8 +726,6 @@ public class AIController : MonoBehaviour
             transform.position = currentNode.transform.position;
         }
     }
-
-    // ========== EVENT HANDLERS ==========
 
     void HandleFruitSpawned(Vector3 position)
     {
@@ -784,7 +767,6 @@ public class AIController : MonoBehaviour
         }
     }
 
-    // ========== DEBUG VISUALIZATION ==========
 
     void OnDrawGizmosSelected()
     {

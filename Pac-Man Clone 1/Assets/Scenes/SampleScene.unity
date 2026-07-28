@@ -1283,7 +1283,7 @@ Transform:
   m_GameObject: {fileID: 213786657}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: -11.21, z: 0}
+  m_LocalPosition: {x: -0.5, y: -7.25, z: 0}
   m_LocalScale: {x: 0.5389, y: 0.5389, z: 0.5389}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4527,6 +4527,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4596,7 +4597,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4646,12 +4647,25 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.5, y: -7.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8adabc8965cfc6449957cce0359c8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Camera
+  player: {fileID: 213786660}
 --- !u!1 &531118203
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,7 +5677,7 @@ Transform:
   m_GameObject: {fileID: 619394800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: -7.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10202,7 +10216,7 @@ GameObject:
   - component: {fileID: 1276125440}
   - component: {fileID: 1276125439}
   m_Layer: 0
-  m_Name: Map
+  m_Name: GameWorldMaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11606,7 +11620,7 @@ GameObject:
   - component: {fileID: 1404615170}
   - component: {fileID: 1404615169}
   - component: {fileID: 1404615171}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21213,6 +21227,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 295409504}
+  - {fileID: 1276125440}
   - {fileID: 1176021500}
   - {fileID: 49302502}
   - {fileID: 213786660}
@@ -21224,4 +21239,3 @@ SceneRoots:
   - {fileID: 1745396075}
   - {fileID: 1518643513}
   - {fileID: 1242539547}
-  - {fileID: 1276125440}

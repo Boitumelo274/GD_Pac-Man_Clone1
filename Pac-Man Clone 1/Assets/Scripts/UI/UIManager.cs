@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class UIManager : MonoBehaviour
     [Header("Feel (optional)")]
     [SerializeField] private float punchScale = 1.3f;
     [SerializeField] private float punchDuration = 0.15f;
+
+
+    [Header("UI References")]
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI titleText;
+
+    [Header("Settings")]
+    public string mainMenuSceneName = "MainMenu";
+
 
     private Vector3 _fruitTextBaseScale;
     private Coroutine _punchRoutine;
@@ -48,6 +58,13 @@ public class UIManager : MonoBehaviour
         {
             winPanel.SetActive(false);
         }
+
+         // Hide UI at start
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
+
+        // Listen for player death
+        GameEvents.OnPlayerDied += ShowGameOver;
     }
 
     private void HandleFruitProgressChanged(int eaten, int required)
@@ -68,6 +85,7 @@ public class UIManager : MonoBehaviour
         if (winPanel != null)
         {
             winPanel.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -96,4 +114,29 @@ public class UIManager : MonoBehaviour
 
         t.localScale = _fruitTextBaseScale;
     }
+    private void OnDestroy()
+    {
+        GameEvents.OnPlayerDied -= ShowGameOver;
+    }
+
+    private void ShowGameOver()
+    {
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        Time.timeScale = 1f;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
 }

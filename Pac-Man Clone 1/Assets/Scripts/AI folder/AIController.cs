@@ -764,6 +764,7 @@ public class AIController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameEvents.RaisePlayerDied();
+            Time.timeScale = 0f;
         }
     }
 

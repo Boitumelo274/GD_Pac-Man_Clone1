@@ -225,22 +225,22 @@ public class AIControllerDumb : MonoBehaviour
     {
         if (direction == Vector2.left)
         {
-            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(-0.9292284f, 0.9292284f, 0.9292284f);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if (direction == Vector2.right)
         {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if (direction == Vector2.up)
         {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
             transform.localRotation = Quaternion.Euler(0, 0, 90);
         }
         else if (direction == Vector2.down)
         {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
             transform.localRotation = Quaternion.Euler(0, 0, 270);
         }
     }

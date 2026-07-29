@@ -6010,7 +6010,7 @@ MonoBehaviour:
   nodeTag: MazeNode
   pelletPrefab: {fileID: 3252071269024427646, guid: d79ca631d0ca82f4ebb2fa1911d5ae6b, type: 3}
   powerPelletPrefab: {fileID: 5414019371915796945, guid: 1c05ba41af5c2b746b0300d3b52caef2, type: 3}
-  pelletsPerRound: 1
+  pelletsPerRound: 15
   powerPelletNodes:
   - {fileID: 337298264}
   - {fileID: 691470623}

@@ -1548,8 +1548,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11400,12 +11400,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   fruitProgressText: {fileID: 389709756}
+  pauseButton: {fileID: 1999262734}
   winPanel: {fileID: 540160706}
   punchScale: 1.3
   punchDuration: 0.15
   gameOverPanel: {fileID: 796430338}
   titleText: {fileID: 1568480012}
-  mainMenuSceneName: MainMenu
+  mainMenuSceneName: Menu
 --- !u!4 &1745396075
 Transform:
   m_ObjectHideFlags: 0
@@ -12113,6 +12114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseContoller
   pausePanel: {fileID: 1995408438}
+  pauseButton: {fileID: 1999262734}
 --- !u!114 &1995408440
 MonoBehaviour:
   m_ObjectHideFlags: 0

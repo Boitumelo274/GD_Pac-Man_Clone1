@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("HUD")]
     [SerializeField] private TextMeshProUGUI fruitProgressText;
+    [SerializeField] private GameObject pauseButton;
 
     [Header("Win Screen")]
     [SerializeField] private GameObject winPanel;
@@ -20,7 +22,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI titleText;
 
     [Header("Settings")]
-    public string mainMenuSceneName = "MainMenu";
+    public string mainMenuSceneName = "Menu";
 
 
     private Vector3 _fruitTextBaseScale;
@@ -85,6 +87,7 @@ public class UIManager : MonoBehaviour
         if (winPanel != null)
         {
             winPanel.SetActive(true);
+            pauseButton.SetActive(false);
             Time.timeScale = 0f;
         }
     }
@@ -122,7 +125,10 @@ public class UIManager : MonoBehaviour
     private void ShowGameOver()
     {
         if (gameOverPanel != null)
+        {
             gameOverPanel.SetActive(true);
+            pauseButton.SetActive(false);
+        }
 
         Time.timeScale = 1f;
     }

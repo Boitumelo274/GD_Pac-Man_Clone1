@@ -15,7 +15,13 @@ public class PelletRoundSpawner : MonoBehaviour
     public GameObject powerPelletPrefab;
 
     [Header("Round Settings")]
-    public int pelletsPerRound = 15;
+    [Tooltip("Set how many regular pellets spawn on each round, in order. " +
+             "Element 0 = round 1, element 1 = round 2, etc. If the game " +
+             "reaches a round beyond this list's length, the last value in " +
+             "the list keeps being used.")]
+    public List<int> pelletsPerRound = new List<int> { 10, 15, 20 };
+
+    private int _roundIndex = 0; // increments each SpawnNewRound call
 
     public List<Transform> powerPelletNodes = new List<Transform>();
 
@@ -35,13 +41,16 @@ public class PelletRoundSpawner : MonoBehaviour
         public float radius = 0.6f;
     }
 
-    private List<Transform> _candidateNodes; //eligible for regular pellets, cached once
+    private List<Transform> _candidateNodes; 
     private readonly List<GameObject> _activePellets = new List<GameObject>();
     private int _remainingPelletsThisRound;
+    private int _totalPelletsThisRound;
 
     public void NotifyPelletCollected()
     {
         _remainingPelletsThisRound--;
+        GameEvents.RaisePelletCountChanged(_remainingPelletsThisRound, _totalPelletsThisRound);
+
         if (_remainingPelletsThisRound <= 0)
         {
             GameEvents.RaiseAllPelletsCollected();
@@ -68,7 +77,7 @@ public class PelletRoundSpawner : MonoBehaviour
         Transform container = GetOrCreateContainer();
         int spawnedCount = 0;
 
-        //Power pellets: always the same fixed spots every round.
+
         if (powerPelletPrefab != null)
         {
             foreach (var node in powerPelletNodes)
@@ -79,11 +88,12 @@ public class PelletRoundSpawner : MonoBehaviour
             }
         }
 
-        //Regular pellets: random subset of the remaining candidate nodes.
+
         List<Transform> shuffled = new List<Transform>(_candidateNodes);
         Shuffle(shuffled);
 
-        int count = Mathf.Min(pelletsPerRound, shuffled.Count);
+        int pelletsThisRound = GetPelletCountForCurrentRound();
+        int count = Mathf.Min(pelletsThisRound, shuffled.Count);
         for (int i = 0; i < count; i++)
         {
             _activePellets.Add(Instantiate(pelletPrefab, shuffled[i].position, Quaternion.identity, container));
@@ -91,6 +101,22 @@ public class PelletRoundSpawner : MonoBehaviour
         }
 
         _remainingPelletsThisRound = spawnedCount;
+        _totalPelletsThisRound = spawnedCount;
+        GameEvents.RaisePelletCountChanged(_remainingPelletsThisRound, _totalPelletsThisRound);
+
+        _roundIndex++;
+    }
+
+    private int GetPelletCountForCurrentRound()
+    {
+        if (pelletsPerRound == null || pelletsPerRound.Count == 0)
+        {
+            Debug.LogWarning("PelletRoundSpawner: Pellets Per Round list is empty, defaulting to 15.");
+            return 15;
+        }
+
+        int index = Mathf.Min(_roundIndex, pelletsPerRound.Count - 1);
+        return pelletsPerRound[index];
     }
 
     private void ClearActivePellets()
@@ -116,7 +142,7 @@ public class PelletRoundSpawner : MonoBehaviour
         foreach (Transform node in boardParent)
         {
             if (!node.CompareTag(nodeTag)) continue;
-            if (powerSet.Contains(node)) continue; //handled separately, always fixed
+            if (powerSet.Contains(node)) continue; // handled separately, always fixed
 
             if (skipPortalNodes)
             {

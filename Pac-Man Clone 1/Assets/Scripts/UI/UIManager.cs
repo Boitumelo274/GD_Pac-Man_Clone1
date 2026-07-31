@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("HUD")]
     [SerializeField] private TextMeshProUGUI fruitProgressText;
+    [SerializeField] private TextMeshProUGUI pelletCountText;
     [SerializeField] private GameObject pauseButton;
 
     [Header("Win Screen")]
@@ -40,12 +41,14 @@ public class UIManager : MonoBehaviour
     {
         GameEvents.OnFruitProgressChanged += HandleFruitProgressChanged;
         GameEvents.OnGameWon += HandleGameWon;
+        GameEvents.OnPelletCountChanged += HandlePelletCountChanged;
     }
 
     private void OnDisable()
     {
         GameEvents.OnFruitProgressChanged -= HandleFruitProgressChanged;
         GameEvents.OnGameWon -= HandleGameWon;
+        GameEvents.OnPelletCountChanged -= HandlePelletCountChanged;
     }
 
     private void Start()
@@ -61,7 +64,7 @@ public class UIManager : MonoBehaviour
             winPanel.SetActive(false);
         }
 
-         // Hide UI at start
+        // Hide UI at start
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
@@ -80,6 +83,12 @@ public class UIManager : MonoBehaviour
             if (_punchRoutine != null) StopCoroutine(_punchRoutine);
             _punchRoutine = StartCoroutine(PunchScale());
         }
+    }
+
+    private void HandlePelletCountChanged(int remaining, int total)
+    {
+        if (pelletCountText == null) return;
+        pelletCountText.text = $"Pellets Remaining: {remaining}";
     }
 
     private void HandleGameWon()

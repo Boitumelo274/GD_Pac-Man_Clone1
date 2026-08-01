@@ -10,6 +10,12 @@ public class PlayerController : MonoBehaviour
     private Node currentNode, previousNode, targetNode;
     private GameBoard gameBoard;
 
+    public SpriteRenderer spriteRenderer;
+    public Sprite originalSprite;
+    public Sprite collectingSprite;
+
+    public float collectFeedbackDuration = 0.3f;
+
     void Start()
     {
         // Get GameBoard reference
@@ -25,7 +31,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-       
+
         Node node = GetNodeAtPosition(transform.position);
 
         if (node != null)
@@ -216,14 +222,14 @@ public class PlayerController : MonoBehaviour
         int x = Mathf.RoundToInt(pos.x);
         int y = Mathf.RoundToInt(pos.y);
 
-        
+
         int arrayX = x - gameBoard.minX;
         int arrayY = y - gameBoard.minY;
 
         int width = gameBoard.board.GetLength(0);
         int height = gameBoard.board.GetLength(1);
 
-       
+
         if (arrayX < 0 || arrayX >= width || arrayY < 0 || arrayY >= height)
         {
             Debug.LogWarning($"Position ({x}, {y}) is outside board! Array index [{arrayX}, {arrayY}]");
@@ -255,25 +261,25 @@ public class PlayerController : MonoBehaviour
 
     GameObject GetPortal(Vector2 pos)
     {
-       
+
         if (gameBoard == null || gameBoard.board == null)
         {
             return null;
         }
 
-       
+
         int x = Mathf.RoundToInt(pos.x);
         int y = Mathf.RoundToInt(pos.y);
 
-       
+
         int arrayX = x - gameBoard.minX;
         int arrayY = y - gameBoard.minY;
 
-       
+
         int width = gameBoard.board.GetLength(0);
         int height = gameBoard.board.GetLength(1);
 
-       
+
         if (arrayX < 0 || arrayX >= width || arrayY < 0 || arrayY >= height)
         {
             return null;
@@ -291,5 +297,30 @@ public class PlayerController : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Note: Unity tags are case-sensitive. Ensure the tag is exactly "collectibles"
+        if (other.CompareTag("Collectible"))
+        {
+            // Change to the collecting sprite
+            if (spriteRenderer != null && collectingSprite != null)
+            {
+                spriteRenderer.sprite = collectingSprite;
+
+                // Cancel any pending revert to prevent overlapping timers if collecting rapidly
+                CancelInvoke(nameof(RevertToNormalSprite));
+                Invoke(nameof(RevertToNormalSprite), collectFeedbackDuration);
+            }
+        }
+    }
+
+    private void RevertToNormalSprite()
+    {
+        if (spriteRenderer != null && originalSprite != null)
+        {
+            spriteRenderer.sprite = originalSprite;
+        }
     }
 }

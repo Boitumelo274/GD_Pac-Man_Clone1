@@ -804,6 +804,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 7
+  spriteRenderer: {fileID: 213786659}
+  originalSprite: {fileID: 819629443714105778, guid: f57fff79fc999f44885e9715f11a89b8, type: 3}
+  collectingSprite: {fileID: 6111112515908941910, guid: 21f868fa54c74ba47a6ba99c5439d1e0, type: 3}
+  collectFeedbackDuration: 0.3
 --- !u!212 &213786659
 SpriteRenderer:
   serializedVersion: 2

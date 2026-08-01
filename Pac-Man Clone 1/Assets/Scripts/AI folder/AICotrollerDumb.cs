@@ -34,6 +34,12 @@ public class AIControllerDumb : MonoBehaviour
     [Header("References")]
     private GameBoard gameBoard;
     private Transform playerTransform;
+    public SpriteRenderer spriteRenderer;
+
+    [Header("Directional Sprites")]
+    public Sprite upSprite;
+    public Sprite downSprite;
+    public Sprite normalSprite;
 
     // Movement variables (same node-hopping approach as AIController)
     private Vector2 direction = Vector2.zero;
@@ -225,23 +231,27 @@ public class AIControllerDumb : MonoBehaviour
     {
         if (direction == Vector2.left)
         {
-            transform.localScale = new Vector3(-0.9292284f, 0.9292284f, 0.9292284f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+            spriteRenderer.sprite = normalSprite;
         }
         else if (direction == Vector2.right)
         {
-            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            spriteRenderer.sprite = normalSprite;
         }
         else if (direction == Vector2.up)
         {
-            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
-            transform.localRotation = Quaternion.Euler(0, 0, 90);
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            spriteRenderer.sprite = upSprite;
         }
         else if (direction == Vector2.down)
         {
-            transform.localScale = new Vector3(0.9292284f, 0.9292284f, 0.9292284f);
-            transform.localRotation = Quaternion.Euler(0, 0, 270);
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            spriteRenderer.sprite = downSprite;
         }
     }
 

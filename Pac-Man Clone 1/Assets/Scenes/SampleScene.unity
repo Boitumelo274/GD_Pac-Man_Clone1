@@ -335,7 +335,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.03055, y: -8.035501, z: 0}
-  m_LocalScale: {x: 0.9292284, y: 0.9292284, z: 0.9292284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -452,7 +452,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 452863545349426221, guid: d9e36f277d5670e4b875e35205fc77fd, type: 3}
+  m_Sprite: {fileID: 4197860276205774954, guid: eba05b513aa5aa3458691ff0e7771298, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -477,6 +477,10 @@ MonoBehaviour:
   chaseSpeed: 5
   wanderChance: 0.805
   allowReversals: 1
+  spriteRenderer: {fileID: 49302506}
+  upSprite: {fileID: -8310578835852675831, guid: 66eec5c48a2015f4390c1e613c233c3c, type: 3}
+  downSprite: {fileID: 452863545349426221, guid: d9e36f277d5670e4b875e35205fc77fd, type: 3}
+  normalSprite: {fileID: 4197860276205774954, guid: eba05b513aa5aa3458691ff0e7771298, type: 3}
 --- !u!1 &76817922
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +873,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: -7.25, z: 0}
-  m_LocalScale: {x: 0.92922837, y: 0.92922837, z: 0.92922837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5052,7 +5056,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.734375
 --- !u!50 &1176021498
 Rigidbody2D:
   serializedVersion: 5
@@ -5129,12 +5133,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1239716952208812555, guid: d4f6ff72f69c76946901c82bbb772649, type: 3}
+  m_Sprite: {fileID: -6060739831708070957, guid: 03f83fda22dc112439f18ae3b5c21fa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.3, y: 0.32}
+  m_Size: {x: 1.375, y: 1.46875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5149,7 +5153,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.96945, y: 0.96450007, z: 0}
-  m_LocalScale: {x: 0.9292284, y: 0.9292284, z: 0.9292284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5172,6 +5176,10 @@ MonoBehaviour:
   currentState: 1
   patrolWaitTime: 2
   protectionRadius: 5
+  spriteRenderer: {fileID: 1176021499}
+  upSprite: {fileID: -1650504585288434639, guid: 76daccdac8ba6a14e8e5ad769b08b1a8, type: 3}
+  downSprite: {fileID: 1239716952208812555, guid: d4f6ff72f69c76946901c82bbb772649, type: 3}
+  normalSprite: {fileID: -6060739831708070957, guid: 03f83fda22dc112439f18ae3b5c21fa2, type: 3}
 --- !u!1 &1214230408
 GameObject:
   m_ObjectHideFlags: 0
@@ -12770,7 +12778,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.03055, y: -22.8355, z: 0}
-  m_LocalScale: {x: 0.9292284, y: 0.9292284, z: 0.9292284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -12887,7 +12895,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8690932953685303957, guid: 95d4519e14d9c2949b07eaf1b460c086, type: 3}
+  m_Sprite: {fileID: -2943848791126845010, guid: b7d02faa85edfa749af051f6cf832ca4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12912,6 +12920,10 @@ MonoBehaviour:
   chaseSpeed: 5
   wanderChance: 0.35
   allowReversals: 1
+  spriteRenderer: {fileID: 2064664245}
+  upSprite: {fileID: -6069322905862937554, guid: d45fd9828014d5a42b9269951733bfe5, type: 3}
+  downSprite: {fileID: 8690932953685303957, guid: 95d4519e14d9c2949b07eaf1b460c086, type: 3}
+  normalSprite: {fileID: -2943848791126845010, guid: b7d02faa85edfa749af051f6cf832ca4, type: 3}
 --- !u!1 &2088944817
 GameObject:
   m_ObjectHideFlags: 0

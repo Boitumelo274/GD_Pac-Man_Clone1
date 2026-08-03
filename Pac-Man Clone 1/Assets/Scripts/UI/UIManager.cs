@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,12 +23,18 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverPanel;
     public TextMeshProUGUI titleText;
 
+    [Header("Start Sequence")]
+    public GameObject transitionPanel;
+    public GameObject countdownPanel;
+    public CountDownController countDownController;
+
     [Header("Settings")]
     public string mainMenuSceneName = "Menu";
 
-
     private Vector3 _fruitTextBaseScale;
     private Coroutine _punchRoutine;
+
+    private static bool _skipIntro = false;
 
     private void Awake()
     {
@@ -59,17 +66,51 @@ public class UIManager : MonoBehaviour
             fruitProgressText.text = "Fruit: 0 / 5";
         }
 
-        if (winPanel != null)
-        {
-            winPanel.SetActive(false);
-        }
-
-        // Hide UI at start
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(false);
-
         // Listen for player death
         GameEvents.OnPlayerDied += ShowGameOver;
+
+        if (_skipIntro)
+        {
+            _skipIntro = false; // Reset the flag for the next time
+
+            // Hide all intro/end panels and ensure time is running
+            if (transitionPanel != null) transitionPanel.SetActive(false);
+            if (countdownPanel != null) countdownPanel.SetActive(false);
+            if (winPanel != null) winPanel.SetActive(false);
+            if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            // First time loading the scene, play the intro sequence
+            StartCoroutine(StartGameSequence());
+        }
+    }
+
+    private IEnumerator StartGameSequence()
+    {
+        Time.timeScale = 0f;
+
+        if (winPanel != null) winPanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+        if (transitionPanel != null) transitionPanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(3.5f);
+
+        if (transitionPanel != null) transitionPanel.SetActive(false);
+        if (countdownPanel != null) countdownPanel.SetActive(true);
+
+        if (countDownController != null)
+        {
+            countDownController.StartCount();
+        }
+
+        yield return new WaitForSecondsRealtime(3f);
+
+        if (countdownPanel != null) countdownPanel.SetActive(false);
+
+        Time.timeScale = 1f; 
     }
 
     private void HandleFruitProgressChanged(int eaten, int required)
@@ -145,6 +186,7 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        _skipIntro = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

@@ -15,6 +15,6 @@ public class PauseContoller : MonoBehaviour
     {
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
-        pauseButton.SetActive(false);
+        pauseButton.SetActive(true);
     }
 }
